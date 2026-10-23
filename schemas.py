@@ -31,6 +31,18 @@ class TaskCreate(TaskBase):
     pass
 
 
+class TaskUpdate(BaseModel):
+    title: str | None = Field(default=None, min_length=5, max_length=200)
+    description: str | None = Field(
+        default=None,
+        max_length=400,
+        description="detailed notes about this task",
+    )
+    due_date: datetime | None = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
 class TaskResponse(TaskBase):
     id: int
     user_id: int
