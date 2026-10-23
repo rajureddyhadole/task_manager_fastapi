@@ -15,7 +15,7 @@ class User(Base):
     password: Mapped[str] = mapped_column(String(255))
 
     # Relationship to easily access user.tasks
-    tasks: Mapped[str] = relationship(
+    tasks: Mapped[list["Task"]] = relationship(
         back_populates="owner", cascade="all, delete-orphan"
     )
 
