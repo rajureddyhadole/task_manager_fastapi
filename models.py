@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database import Base
@@ -27,6 +27,7 @@ class Task(Base):
     title: Mapped[str] = mapped_column(String(200), index=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     due_date: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    completed: Mapped[bool] = mapped_column(Boolean, default=False)
 
     # Foreign Key linking task to a user
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))

@@ -25,6 +25,7 @@ class TaskBase(BaseModel):
         description="detailed notes about this task",
     )
     due_date: datetime | None = None
+    completed: bool = False
 
 
 class TaskCreate(TaskBase):
@@ -39,6 +40,7 @@ class TaskUpdate(BaseModel):
         description="detailed notes about this task",
     )
     due_date: datetime | None = None
+    completed: bool | None = None
 
     model_config = ConfigDict(from_attributes=True)
 

@@ -20,6 +20,7 @@ def create_task(
         title=task_in.title,
         description=task_in.description,
         due_date=task_in.due_date,
+        completed=task_in.completed,
         user_id=current_user.id,
     )
 
@@ -64,7 +65,7 @@ def update_task(
     return task
 
 
-@router.delete("/{task_id}")
+@router.delete("/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_task(
     task_id: int,
     db: Session = Depends(get_db),
